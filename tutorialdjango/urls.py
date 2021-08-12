@@ -14,12 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from django.urls.conf import include
+from django.urls import path, include
+from rest_framework import routers
+from blog.views import PostViewSet
+
+router = routers.DefaultRouter()
+router.register(r'posts',PostViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ckeditor', include('ckeditor_uploader.urls')),
+    path('', include(router.urls))
+    #path('ckeditor', include('ckeditor_uploader.urls')),
 ]
 
 def get_filename(filename):

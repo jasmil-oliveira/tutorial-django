@@ -6,7 +6,8 @@ from .models import Post
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ("title","slug","author","created","updated","status","publish")
+    list_display = ("id","title","slug","author","created","updated","status","publish")
+    list_display_links = ("id","title")
     prepopulated_fields = {"slug":("title",)}
     list_filter = ('status', 'created', 'publish', 'author')
     search_fields = ('title', 'body')
